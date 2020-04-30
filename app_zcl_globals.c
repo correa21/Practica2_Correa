@@ -72,12 +72,12 @@ PRIVATE uint8 s_au8Endpoint1OutputClusterDiscFlags[1] = { 0x00 };
 
 /******************************NEW ENDPOINT************************************/
 PRIVATE const uint16 s_au16Endpoint2InputClusterList[5] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
-		HA_ONOFF_CLUSTER_ID, HA_DEFAULT_CLUSTER_ID, };
+		HA_TEMPMEASUREMENT_CLUSTER_ID, HA_DEFAULT_CLUSTER_ID, };
 PRIVATE const PDUM_thAPdu s_ahEndpoint2InputClusterAPdus[5] = { apduZCL, apduZCL, apduZCL, apduZCL, apduZCL, };
 PRIVATE uint8 s_au8Endpoint2InputClusterDiscFlags[1] = { 0x05 };
 
 PRIVATE const uint16 s_au16Endpoint2OutputClusterList[4] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
-		HA_ONOFF_CLUSTER_ID, };
+		HA_TEMPMEASUREMENT_CLUSTER_ID, };
 PRIVATE uint8 s_au8Endpoint2OutputClusterDiscFlags[1] = { 0x0f };
 
 
