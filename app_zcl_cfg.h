@@ -121,7 +121,7 @@
 #define HA_DEFAULT_CLUSTER_ID    (0xffff)
 #define HA_OTA_CLUSTER_ID    (0x0019)
 #define HA_TIME_CLUSTER_ID    (0x000a)
-
+#define HA_TEMPMEASUREMENT_CLUSTER_ID	(0x0402)
 
 
 /* Node 'Router' */
