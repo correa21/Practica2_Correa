@@ -19,7 +19,6 @@
 /***        Include files                                                 ***/
 /****************************************************************************/
 #include <jendefs.h>
-
 /****************************************************************************/
 /***        Macro Definitions                                             ***/
 /****************************************************************************/
@@ -33,7 +32,7 @@
 #define ZCL_MANUFACTURER_CODE                                0x1037
 
 /* Number of endpoints supported by this device */
-#define ZCL_NUMBER_OF_ENDPOINTS                              3
+#define ZCL_NUMBER_OF_ENDPOINTS                              2
 
 /* ZCL has all cooperative task */
 #define COOPERATIVE
@@ -72,19 +71,22 @@ enum
 /****************************************************************************/
 #define CLD_BASIC
 #define BASIC_SERVER
-#define BASIC_CLIENT
+
 
 #define CLD_IDENTIFY
 #define IDENTIFY_SERVER
-#define IDENTIFY_CLIENT
+
 
 #define CLD_GROUPS
 #define GROUPS_SERVER
-#define GROUPS_CLIENT
+
 
 #define CLD_ONOFF
 #define ONOFF_SERVER
-#define ONOFF_CLIENT
+
+
+#define CLD_TEMPERATURE_MEASUREMENT
+#define TEMPERATURE_MEASUREMENT_SERVER
 
 #ifdef BUILD_OTA
 #define CLD_OTA

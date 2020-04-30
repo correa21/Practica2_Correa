@@ -127,12 +127,13 @@
 /* Node 'Router' */
 
 /* Endpoints */
-#define ROUTER_ZDO_ENDPOINT    			(0)
-#define ROUTER_APPLICATION_ENDPOINT    	(1)
+#define ROUTER_ZDO_ENDPOINT    					(0)
+#define ROUTER_APPLICATION_ENDPOINT    			(1)
+#define ROUTER_TEMP_APPLICATION_ENDPOINT    	(2)
 /****************************************************************************/
 /***        Type Definitions                                              ***/
 /****************************************************************************/
-#define ROUTER_TEMPERATURE_APPLICATION_ENDPOINT    	(2)
+
 /****************************************************************************/
 /***        External Variables                                            ***/
 /****************************************************************************/

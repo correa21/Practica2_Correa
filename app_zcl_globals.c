@@ -46,8 +46,8 @@ typedef struct _zps_tsAplAfSimpleDescCont
 /****************************************************************************/
 
 
-PUBLIC uint8 u8MaxZpsConfigEp = 3 ;
-PUBLIC uint8 au8EpMapPresent[3] = { ROUTER_APPLICATION_ENDPOINT,ROUTER_SWITCH1_ENDPOINT,ROUTER_SWITCH2_ENDPOINT  };
+PUBLIC uint8 u8MaxZpsConfigEp = 2 ;
+PUBLIC uint8 au8EpMapPresent[2] = { ROUTER_APPLICATION_ENDPOINT,ROUTER_TEMP_APPLICATION_ENDPOINT  };
 
 
 
@@ -70,89 +70,66 @@ PRIVATE uint8 s_au8Endpoint1InputClusterDiscFlags[1] = { 0x0f };
 PRIVATE const uint16 s_au16Endpoint1OutputClusterList[4] = { 0x0000, 0x0004, 0x0003, 0x0006, };
 PRIVATE uint8 s_au8Endpoint1OutputClusterDiscFlags[1] = { 0x00 };
 
+/******************************NEW ENDPOINT************************************/
 PRIVATE const uint16 s_au16Endpoint2InputClusterList[5] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
- HA_ONOFF_CLUSTER_ID, HA_DEFAULT_CLUSTER_ID, };
+		HA_ONOFF_CLUSTER_ID, HA_DEFAULT_CLUSTER_ID, };
 PRIVATE const PDUM_thAPdu s_ahEndpoint2InputClusterAPdus[5] = { apduZCL, apduZCL, apduZCL, apduZCL, apduZCL, };
 PRIVATE uint8 s_au8Endpoint2InputClusterDiscFlags[1] = { 0x05 };
 
 PRIVATE const uint16 s_au16Endpoint2OutputClusterList[4] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
- HA_ONOFF_CLUSTER_ID, };
+		HA_ONOFF_CLUSTER_ID, };
 PRIVATE uint8 s_au8Endpoint2OutputClusterDiscFlags[1] = { 0x0f };
 
-PRIVATE const uint16 s_au16Endpoint3InputClusterList[5] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
- HA_ONOFF_CLUSTER_ID, HA_DEFAULT_CLUSTER_ID, };
-PRIVATE const PDUM_thAPdu s_ahEndpoint3InputClusterAPdus[5] = { apduZCL, apduZCL, apduZCL, apduZCL, apduZCL, };
-PRIVATE uint8 s_au8Endpoint3InputClusterDiscFlags[1] = { 0x05 };
-
-PRIVATE const uint16 s_au16Endpoint3OutputClusterList[4] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
- HA_ONOFF_CLUSTER_ID, };
-PRIVATE uint8 s_au8Endpoint3OutputClusterDiscFlags[1] = { 0x0f };
 
 PUBLIC zps_tsAplAfSimpleDescCont s_asSimpleDescConts[AF_SIMPLE_DESCRIPTOR_TABLE_SIZE] = {
- {
     {
-       0x0000,
-       0,
-       0,
-       0,
-       84,
-       84,
-       s_au16Endpoint0InputClusterList,
-       s_au16Endpoint0OutputClusterList,
-       s_au8Endpoint0InputClusterDiscFlags,
-       s_au8Endpoint0OutputClusterDiscFlags,
+        {
+            0x0000,
+            0,
+            0,
+            0,
+            84,
+            84,
+            (uint16*)s_au16Endpoint0InputClusterList,
+            (uint16*)s_au16Endpoint0OutputClusterList,
+            s_au8Endpoint0InputClusterDiscFlags,
+            s_au8Endpoint0OutputClusterDiscFlags,
+        },
+        s_ahEndpoint0InputClusterAPdus,
+        1
     },
-    s_ahEndpoint0InputClusterAPdus,
-    1
- },
- {
     {
-       0x0104,
-       0,
-       1,
-       1,
-       5,
-       4,
-       s_au16Endpoint1InputClusterList,
-       s_au16Endpoint1OutputClusterList,
-       s_au8Endpoint1InputClusterDiscFlags,
-       s_au8Endpoint1OutputClusterDiscFlags,
+        {
+            0x0104,
+            0,
+            1,
+            1,
+            5,
+            4,
+            (uint16*)s_au16Endpoint1InputClusterList,
+            (uint16*)s_au16Endpoint1OutputClusterList,
+            s_au8Endpoint1InputClusterDiscFlags,
+            s_au8Endpoint1OutputClusterDiscFlags,
+        },
+        s_ahEndpoint1InputClusterAPdus,
+        1
     },
-    s_ahEndpoint1InputClusterAPdus,
-    1
- },
- {
-    {
-       0x0104,
-       0,
-       1,
-       2,
-       5,
-       4,
-       s_au16Endpoint2InputClusterList,
-       s_au16Endpoint2OutputClusterList,
-       s_au8Endpoint2InputClusterDiscFlags,
-       s_au8Endpoint2OutputClusterDiscFlags,
-     },
-     s_ahEndpoint2InputClusterAPdus,
-    1
- },
- {
-    {
-       0x0104,
-       0,
-       1,
-       3,
-       5,
-       4,
-       s_au16Endpoint3InputClusterList,
-       s_au16Endpoint3OutputClusterList,
-       s_au8Endpoint3InputClusterDiscFlags,
-       s_au8Endpoint3OutputClusterDiscFlags,
-    },
-    s_ahEndpoint3InputClusterAPdus,
-    1
- },
+	 {
+		 {
+			0x0104,//app profile id
+			0,//device id
+			1,//device version
+			2,//endpoint
+			5,//in cluster count
+			4,//ount clouster count
+			(uint16*)s_au16Endpoint1InputClusterList,//in cluster list
+			(uint16*)s_au16Endpoint1OutputClusterList,//out cluster list
+			s_au8Endpoint1InputClusterDiscFlags,//in discovery enabled flags
+			s_au8Endpoint1OutputClusterDiscFlags,//out discovery enabled flags
+		 },
+		 s_ahEndpoint2InputClusterAPdus,//in cluster pdu
+		 1//enable
+	 },
 };
 
 /* Node Descriptor */
