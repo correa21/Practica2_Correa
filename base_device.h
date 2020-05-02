@@ -45,13 +45,6 @@ extern "C" {
 #endif
 
 
-/* Temperature Measurement Instance */
-#if (defined CLD_TEMPERATURE_MEASUREMENT) && (defined TEMPERATURE_MEASUREMENT_SERVER)
- tsZCL_ClusterInstance sTemperatureMeasurementServer;
-#endif
-
-
-
 /* Holds cluster instances */
 #if defined(__IAR_SYSTEMS_ICC__)
 #pragma pack(push, 4)
@@ -134,6 +127,11 @@ typedef struct
 #if (defined CLD_ONOFF) && (defined ONOFF_SERVER)
     tsZCL_ClusterInstance sOnOffServer;
 #endif
+
+    /* Temperature Measurement Instance */
+    #if (defined CLD_TEMPERATURE_MEASUREMENT) && (defined TEMPERATURE_MEASUREMENT_SERVER)
+     tsZCL_ClusterInstance sTemperatureMeasurementServer;
+    #endif
 
 #if (defined CLD_ONOFF) && (defined ONOFF_CLIENT)
     tsZCL_ClusterInstance sOnOffClient;
