@@ -71,12 +71,12 @@ PRIVATE const uint16 s_au16Endpoint1OutputClusterList[4] = { 0x0000, 0x0004, 0x0
 PRIVATE uint8 s_au8Endpoint1OutputClusterDiscFlags[1] = { 0x00 };
 
 /******************************NEW ENDPOINT************************************/
-PRIVATE const uint16 s_au16Endpoint2InputClusterList[5] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
+PRIVATE const uint16 s_au16Endpoint2InputClusterList[6] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
 		HA_TEMPMEASUREMENT_CLUSTER_ID, HA_DEFAULT_CLUSTER_ID, };
-PRIVATE const PDUM_thAPdu s_ahEndpoint2InputClusterAPdus[5] = { apduZCL, apduZCL, apduZCL, apduZCL, apduZCL, };
+PRIVATE const PDUM_thAPdu s_ahEndpoint2InputClusterAPdus[6] = { apduZCL, apduZCL, apduZCL, apduZCL, apduZCL, };
 PRIVATE uint8 s_au8Endpoint2InputClusterDiscFlags[1] = { 0x05 };
 
-PRIVATE const uint16 s_au16Endpoint2OutputClusterList[4] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
+PRIVATE const uint16 s_au16Endpoint2OutputClusterList[5] = { HA_BASIC_CLUSTER_ID, HA_GROUPS_CLUSTER_ID, HA_IDENTIFY_CLUSTER_ID,\
 		HA_TEMPMEASUREMENT_CLUSTER_ID, };
 PRIVATE uint8 s_au8Endpoint2OutputClusterDiscFlags[1] = { 0x0f };
 
@@ -120,12 +120,12 @@ PUBLIC zps_tsAplAfSimpleDescCont s_asSimpleDescConts[AF_SIMPLE_DESCRIPTOR_TABLE_
 			0,//device id
 			1,//device version
 			2,//endpoint
-			5,//in cluster count
-			4,//ount clouster count
-			(uint16*)s_au16Endpoint1InputClusterList,//in cluster list
-			(uint16*)s_au16Endpoint1OutputClusterList,//out cluster list
-			s_au8Endpoint1InputClusterDiscFlags,//in discovery enabled flags
-			s_au8Endpoint1OutputClusterDiscFlags,//out discovery enabled flags
+			6,//in cluster count
+			5,//out clouster count
+			(uint16*)s_au16Endpoint2InputClusterList,//in cluster list
+			(uint16*)s_au16Endpoint2OutputClusterList,//out cluster list
+			s_au8Endpoint2InputClusterDiscFlags,//in discovery enabled flags
+			s_au8Endpoint2OutputClusterDiscFlags,//out discovery enabled flags
 		 },
 		 s_ahEndpoint2InputClusterAPdus,//in cluster pdu
 		 1//enable

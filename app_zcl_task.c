@@ -453,6 +453,7 @@ PUBLIC void APP_vHandleIdentify(uint16 u16Time)
             Led2On();
             Led3On();
             Led4On();
+
         }
         else
         {
@@ -599,6 +600,7 @@ PRIVATE void APP_vHandleClusterCustomCommands(tsZCL_CallBackEvent *psEvent)
                                                 &APP_ZCL_cbEndpointCallback,
                                                 &sBaseDevice);
 
+
                 eZHA_RegisterBaseDeviceEndPoint(ROUTER_TEMP_APPLICATION_ENDPOINT,
                         						&APP_ZCL_cbEndpointCallback,
 												&sBaseDevice_temperature);
@@ -668,7 +670,8 @@ PRIVATE void APP_vZCL_DeviceSpecific_Init(void)
     sBaseDevice.sTemperatureMeasurementServerCluster.i16MeasuredValue = 0;
 	sBaseDevice.sTemperatureMeasurementServerCluster.i16MinMeasuredValue = 0;
 	sBaseDevice.sTemperatureMeasurementServerCluster.i16MaxMeasuredValue = 0;
-    FLib_MemCpy(sBaseDevice_temperature.sBasicServerCluster.au8ManufacturerName, "NXP", CLD_BAS_MANUF_NAME_SIZE);
+
+	FLib_MemCpy(sBaseDevice_temperature.sBasicServerCluster.au8ManufacturerName, "NXP", CLD_BAS_MANUF_NAME_SIZE);
 	FLib_MemCpy(sBaseDevice_temperature.sBasicServerCluster.au8ModelIdentifier, "BDB-Temp", CLD_BAS_MODEL_ID_SIZE);
 	FLib_MemCpy(sBaseDevice_temperature.sBasicServerCluster.au8DateCode, "20170310", CLD_BAS_DATE_SIZE);
 	FLib_MemCpy(sBaseDevice_temperature.sBasicServerCluster.au8SWBuildID, "1000-0001", CLD_BAS_SW_BUILD_SIZE);

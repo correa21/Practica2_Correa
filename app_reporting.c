@@ -28,6 +28,7 @@
 #include "Groups.h"
 #include "OnOff.h"
 #include "Groups_internal.h"
+#include "TemperatureMeasurement.h"
 #endif
 #include "FunctionLib.h"
 /****************************************************************************/
@@ -68,7 +69,9 @@ NVM_RegisterDataSet(asSavedReports, 1, sizeof(asSavedReports), PDM_ID_APP_REPORT
 /* define the default reports */
 tsReports asDefaultReports[NUMBER_OF_REPORTS] = \
 {\
-    {GENERAL_CLUSTER_ID_ONOFF, {0, E_ZCL_BOOL, E_CLD_ONOFF_ATTR_ID_ONOFF, MIN_REPORT_INTERVAL,MAX_REPORT_INTERVAL,0,{0}}}
+    {GENERAL_CLUSTER_ID_ONOFF, {0, E_ZCL_BOOL, E_CLD_ONOFF_ATTR_ID_ONOFF, MIN_REPORT_INTERVAL,MAX_REPORT_INTERVAL,0,{0}}},
+	/*Report for temperature added*/
+	{MEASUREMENT_AND_SENSING_CLUSTER_ID_TEMPERATURE_MEASUREMENT, {0, E_ZCL_INT16, E_CLD_TEMPMEAS_ATTR_ID_MEASURED_VALUE, MIN_REPORT_INTERVAL,MAX_REPORT_INTERVAL,0,{0}}}
 };
 
 
@@ -125,21 +128,34 @@ PUBLIC void vMakeSupportedAttributesReportable(void)
 
     DBG_vPrintf(TRACE_REPORT, "MAKE Reportable ep %d\r\n", ROUTER_APPLICATION_ENDPOINT);
 
-    for(i=0; i<NUMBER_OF_REPORTS; i++)
+    //for(i=0; i<NUMBER_OF_REPORTS; i++)
     {
-        u16AttributeEnum = asSavedReports[i].sAttributeReportingConfigurationRecord.u16AttributeEnum;
-        u16ClusterId = asSavedReports[i].u16ClusterID;
-        psAttributeReportingConfigurationRecord = &(asSavedReports[i].sAttributeReportingConfigurationRecord);
+        u16AttributeEnum = asSavedReports[0].sAttributeReportingConfigurationRecord.u16AttributeEnum;
+        u16ClusterId = asSavedReports[0].u16ClusterID;
+        psAttributeReportingConfigurationRecord = &(asSavedReports[0].sAttributeReportingConfigurationRecord);
         DBG_vPrintf(TRACE_REPORT, "Cluster %04x Attribute %04x Min %d Max %d IntV %d Direct %d Change %d\r\n",
                 u16ClusterId,
                 u16AttributeEnum,
-                asSavedReports[i].sAttributeReportingConfigurationRecord.u16MinimumReportingInterval,
-                asSavedReports[i].sAttributeReportingConfigurationRecord.u16MaximumReportingInterval,
-                asSavedReports[i].sAttributeReportingConfigurationRecord.u16TimeoutPeriodField,
-                asSavedReports[i].sAttributeReportingConfigurationRecord.u8DirectionIsReceived,
-                asSavedReports[i].sAttributeReportingConfigurationRecord.uAttributeReportableChange.zint8ReportableChange);
+                asSavedReports[0].sAttributeReportingConfigurationRecord.u16MinimumReportingInterval,
+                asSavedReports[0].sAttributeReportingConfigurationRecord.u16MaximumReportingInterval,
+                asSavedReports[0].sAttributeReportingConfigurationRecord.u16TimeoutPeriodField,
+                asSavedReports[0].sAttributeReportingConfigurationRecord.u8DirectionIsReceived,
+                asSavedReports[0].sAttributeReportingConfigurationRecord.uAttributeReportableChange.zint8ReportableChange);
         eZCL_SetReportableFlag( ROUTER_APPLICATION_ENDPOINT, u16ClusterId, TRUE, FALSE, u16AttributeEnum);
         eZCL_CreateLocalReport( ROUTER_APPLICATION_ENDPOINT, u16ClusterId, 0, TRUE, psAttributeReportingConfigurationRecord);
+        u16AttributeEnum = asSavedReports[1].sAttributeReportingConfigurationRecord.u16AttributeEnum;
+                u16ClusterId = asSavedReports[1].u16ClusterID;
+                psAttributeReportingConfigurationRecord = &(asSavedReports[1].sAttributeReportingConfigurationRecord);
+                DBG_vPrintf(TRACE_REPORT, "Cluster %04x Attribute %04x Min %d Max %d IntV %d Direct %d Change %d\r\n",
+                        u16ClusterId,
+                        u16AttributeEnum,
+                        asSavedReports[1].sAttributeReportingConfigurationRecord.u16MinimumReportingInterval,
+                        asSavedReports[1].sAttributeReportingConfigurationRecord.u16MaximumReportingInterval,
+                        asSavedReports[1].sAttributeReportingConfigurationRecord.u16TimeoutPeriodField,
+                        asSavedReports[1].sAttributeReportingConfigurationRecord.u8DirectionIsReceived,
+                        asSavedReports[1].sAttributeReportingConfigurationRecord.uAttributeReportableChange.zint8ReportableChange);
+                eZCL_SetReportableFlag( ROUTER_TEMP_APPLICATION_ENDPOINT, u16ClusterId, TRUE, FALSE, u16AttributeEnum);
+                eZCL_CreateLocalReport( ROUTER_TEMP_APPLICATION_ENDPOINT, u16ClusterId, 0, TRUE, psAttributeReportingConfigurationRecord);
     }
 }
 

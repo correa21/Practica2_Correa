@@ -422,7 +422,7 @@ PRIVATE void vAppHandleAfEvent( BDB_tsZpsAfEvent *psZpsAfEvent)
     if (psZpsAfEvent->u8EndPoint == ROUTER_APPLICATION_ENDPOINT
     	|| psZpsAfEvent->u8EndPoint == ROUTER_TEMP_APPLICATION_ENDPOINT)
     {
-    	DBG_vPrintf(TRACE_APP, "Pass to ZCL\r\n");
+    	DBG_vPrintf(TRACE_APP, "Pass to ZCL\r\n");;
 		if ((psZpsAfEvent->sStackEvent.eType == ZPS_EVENT_APS_DATA_INDICATION) ||
 			(psZpsAfEvent->sStackEvent.eType == ZPS_EVENT_APS_INTERPAN_DATA_INDICATION))
 		{

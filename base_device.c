@@ -208,15 +208,14 @@ PUBLIC teZCL_Status eZHA_RegisterBaseDeviceEndPoint(uint8 u8EndPointIdentifier,
 #if (defined CLD_TEMPERATURE_MEASUREMENT) && (defined TEMPERATURE_MEASUREMENT_SERVER)
     /* Create an instance of a Temperature Measurement cluster as a server */
     if(eCLD_TemperatureMeasurementCreateTemperatureMeasurement(&psDeviceInfo->sClusterInstance.sTemperatureMeasurementServer,
-																TRUE,
-																&sCLD_TemperatureMeasurement,
-																&psDeviceInfo->sTemperatureMeasurementServerCluster,
-																&au8TemperatureMeasurementAttributeControlBits[0]) != E_ZCL_SUCCESS)
+                                                    TRUE,
+                                                    &sCLD_TemperatureMeasurement,
+                                                    &psDeviceInfo->sTemperatureMeasurementServerCluster,
+                                                    &au8TemperatureMeasurementAttributeControlBits[0]) != E_ZCL_SUCCESS)
    {
        return E_ZCL_FAIL;
-   }
+    }
 #endif
-
 
     return eZCL_Register(&psDeviceInfo->sEndPoint);
 }

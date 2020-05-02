@@ -32,7 +32,7 @@
 #define ZCL_MANUFACTURER_CODE                                0x1037
 
 /* Number of endpoints supported by this device */
-#define ZCL_NUMBER_OF_ENDPOINTS                              2
+#define ZCL_NUMBER_OF_ENDPOINTS                              3
 
 /* ZCL has all cooperative task */
 #define COOPERATIVE
@@ -54,7 +54,7 @@
 enum
 {
  REPORT_ONOFF_SLOT = 0,
- NUMBER_OF_REPORTS
+ NUMBER_OF_REPORTS = 2 //2 reports because we have 2 clusters that need to be reporting
 };
 
 #define ZCL_NUMBER_OF_REPORTS     NUMBER_OF_REPORTS
