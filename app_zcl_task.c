@@ -230,7 +230,7 @@ PUBLIC void APP_cbTimerZclTick(void *pvParam)
  ****************************************************************************/
 PUBLIC void APP_ZCL_vEventHandler(ZPS_tsAfEvent *psStackEvent)
 {
-	sBaseDevice_temperature.sTemperatureMeasurementServerCluster.i16MeasuredValue = (int16) 100 * BOARD_GetTemperature();
+
     tsZCL_CallBackEvent sCallBackEvent;
     sCallBackEvent.pZPSevent = psStackEvent;
 
@@ -525,6 +525,9 @@ PUBLIC void vIdEffectTick(uint8 u8Endpoint)
 
         }
     }
+    /*Refresh the temperature measure when time is off for binding report purposes*/
+            sBaseDevice_temperature.sTemperatureMeasurementServerCluster.i16MeasuredValue = (int16) 100 * BOARD_GetTemperature();
+
 }
 #endif
 
