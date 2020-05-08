@@ -54,7 +54,8 @@
 enum
 {
  REPORT_ONOFF_SLOT = 0,
- NUMBER_OF_REPORTS = 2 //2 reports because we have 2 clusters that need to be reporting
+ REPORT_TEMP_SLOT,
+ NUMBER_OF_REPORTS  //2 reports because we have 2 clusters that need to be reporting
 };
 
 #define ZCL_NUMBER_OF_REPORTS     NUMBER_OF_REPORTS

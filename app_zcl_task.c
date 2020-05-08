@@ -230,6 +230,7 @@ PUBLIC void APP_cbTimerZclTick(void *pvParam)
  ****************************************************************************/
 PUBLIC void APP_ZCL_vEventHandler(ZPS_tsAfEvent *psStackEvent)
 {
+	sBaseDevice_temperature.sTemperatureMeasurementServerCluster.i16MeasuredValue = (int16) 100 * BOARD_GetTemperature();
     tsZCL_CallBackEvent sCallBackEvent;
     sCallBackEvent.pZPSevent = psStackEvent;
 
@@ -552,7 +553,6 @@ PRIVATE void APP_vHandleClusterCustomCommands(tsZCL_CallBackEvent *psEvent)
                 Led2On();
                 Led3On();
                 Led4On();
-                
             }
             else
             {
@@ -565,7 +565,7 @@ PRIVATE void APP_vHandleClusterCustomCommands(tsZCL_CallBackEvent *psEvent)
         break;
 
         case MEASUREMENT_AND_SENSING_CLUSTER_ID_TEMPERATURE_MEASUREMENT:
-        	sBaseDevice_temperature.sTemperatureMeasurementServerCluster.i16MeasuredValue = 100 * BOARD_GetTemperature();
+        	sBaseDevice_temperature.sTemperatureMeasurementServerCluster.i16MeasuredValue = (int16) 100 * BOARD_GetTemperature();
         	sBaseDevice_temperature.sTemperatureMeasurementServerCluster.i16MinMeasuredValue = 0;
         	sBaseDevice_temperature.sTemperatureMeasurementServerCluster.i16MaxMeasuredValue = 0;
 		break;
@@ -633,7 +633,7 @@ PRIVATE void APP_vHandleClusterCustomCommands(tsZCL_CallBackEvent *psEvent)
  *
  ****************************************************************************/
 PRIVATE void APP_vHandleClusterUpdate(tsZCL_CallBackEvent *psEvent)
-{
+{DBG_vPrintf(TRACE_ZCL,"ESTOY EN CLUSTER UPDATE\r\n");
     if (psEvent->psClusterInstance->psClusterDefinition->u16ClusterEnum == GENERAL_CLUSTER_ID_IDENTIFY)
     {
         APP_vHandleIdentify(sBaseDevice.sIdentifyServerCluster.u16IdentifyTime);

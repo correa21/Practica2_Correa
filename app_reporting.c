@@ -247,6 +247,32 @@ PUBLIC void vSaveReportableRecord(  uint16 u16ClusterID,
                             asSavedReports,
                             sizeof(asSavedReports));
     }
+    if (u16ClusterID == MEASUREMENT_AND_SENSING_CLUSTER_ID_TEMPERATURE_MEASUREMENT)
+        {
+            iIndex = REPORT_TEMP_SLOT;
+            DBG_vPrintf(TRACE_REPORT, "Save to report %d\r\n", iIndex);
+
+            /*For CurrentLevel attribute in LevelControl Cluster*/
+            asSavedReports[iIndex].u16ClusterID=u16ClusterID;
+            FLib_MemCpy( &(asSavedReports[iIndex].sAttributeReportingConfigurationRecord),
+                    psAttributeReportingConfigurationRecord,
+                    sizeof(tsZCL_AttributeReportingConfigurationRecord) );
+
+            DBG_vPrintf(TRACE_REPORT,"Cluster %04x Type %d Attrib %04x Min %d Max %d IntV %d Direction %d Change %d\r\n",
+                    asSavedReports[iIndex].u16ClusterID,
+                    asSavedReports[iIndex].sAttributeReportingConfigurationRecord.eAttributeDataType,
+                    asSavedReports[iIndex].sAttributeReportingConfigurationRecord.u16AttributeEnum,
+                    asSavedReports[iIndex].sAttributeReportingConfigurationRecord.u16MinimumReportingInterval,
+                    asSavedReports[iIndex].sAttributeReportingConfigurationRecord.u16MaximumReportingInterval,
+                    asSavedReports[iIndex].sAttributeReportingConfigurationRecord.u16TimeoutPeriodField,
+                    asSavedReports[iIndex].sAttributeReportingConfigurationRecord.u8DirectionIsReceived,
+                    asSavedReports[iIndex].sAttributeReportingConfigurationRecord.uAttributeReportableChange.zuint8ReportableChange );
+
+            /*Save this Records*/
+            PDM_eSaveRecordData(PDM_ID_APP_REPORTS,
+                                asSavedReports,
+                                sizeof(asSavedReports));
+        }
 
 
 
@@ -260,6 +286,10 @@ PRIVATE uint8 u8GetRecordIndex( uint16 u16ClusterID,
     if (u16ClusterID == GENERAL_CLUSTER_ID_ONOFF)
     {
         u8Index = REPORT_ONOFF_SLOT;
+    }
+    else  if (u16ClusterID == MEASUREMENT_AND_SENSING_CLUSTER_ID_TEMPERATURE_MEASUREMENT)
+    {
+    	u8Index = REPORT_TEMP_SLOT;
     }
     else
     {
